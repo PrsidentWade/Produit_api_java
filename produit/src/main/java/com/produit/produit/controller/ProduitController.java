@@ -15,16 +15,34 @@ public class ProduitController {
     @Autowired
     private  ProduitService produitService ;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-       return "hello";
-    }
+//    @GetMapping("/hello")
+//    public String sayHello()
+//    {
+//        return "hello";
+//    }
     @GetMapping("/all")
     public List<Produit> getAllProduits(){
+
         return produitService.getAllProduits();
     }
     @PostMapping
     public Produit createProduit(@RequestBody Produit produit){
+
         return produitService.createProduit(produit);
     }
+    @GetMapping("/{id}")
+    public Produit getProduitById(@PathVariable  Long id){
+
+        return produitService.getProduitById(id);
+    }
+    @DeleteMapping("/{id}")
+    public String deleteProduit(@PathVariable Long id){
+
+        return produitService.deleteProduit(id);
+    }
+    @PutMapping("/{id}")
+    public Produit updateProduit(@PathVariable long id, @RequestBody Produit produit){
+        return produitService.updateProduit(id, produit);
+    }
+
 }
